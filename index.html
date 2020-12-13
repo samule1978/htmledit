@@ -1,61 +1,93 @@
 <!DOCTYPE html>
+  <html>
+    <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+      <title>Real-time HTML Editor</title>
 
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
-<title>Real-time HTML Editor</title>
-<script type="text/javascript">
+      <style type="text/css">
+        * { margin: 0; padding: 0; }
+        html,body { overflow: hidden; background-color: black; }
 
-var editboxHTML = 
-'<html class="expand close">' +
-'<head>' +
-'<style type="text/css">' +
-'.expand { width: 100%; height: 100%; }' +
-'.close { border: none; margin: 0px; padding: 0px; }' +
-'html,body { overflow: hidden; }' +
-'<\/style>' +
-'<\/head>' +
-'<body class="expand close" onload="document.f.ta.focus(); document.f.ta.select();">' +
-'<form class="expand close" name="f">' +
-'<textarea class="expand close" style="background: #def;" name="ta" wrap="hard" spellcheck="false">' +
-'<\/textarea>' +
-'<\/form>' +
-'<\/body>' +
-'<\/html>';
+        framesetcontainer,
+        htmlEditContainer,
+        .html-edit,
+        .html-preview {
+            width: 100vw;
+            height: 100vh;
+        }
 
-var defaultStuff = '';
+        .hide { visibility: hidden; display: none; }
+        .show { visibility: visible; }
+      </style>
+      
+      <script type="text/javascript">
+        function init()
+        {
+            addFrameset();
+        }
 
-var old = '';
-         
-function init()
-{
-  window.editbox.document.write(editboxHTML);
-  window.editbox.document.close();
-  window.editbox.document.f.ta.value = defaultStuff;
-  update();
-}
+        function showHide() {
 
-function update()
-{
-  var textarea = window.editbox.document.f.ta;
-  var d = dynamicframe.document; 
+          if (this.classList.contains('html-edit')) {
+            if (this.value !== "") {
+              this.parentElement.querySelector('.html-preview').src = "data:text/html;charset=utf-8," + escape(this.value);
 
-  if (old != textarea.value) {
-    old = textarea.value;
-    d.open();
-    d.write(old);
-    d.close();
-  }
+              if (this.classList.contains('show')) {
+                this.classList.remove('show');
+                this.classList.add('hide');
+              } else {
+                this.classList.remove('hide');
+                this.classList.add('show');
+              }
+              
+              this.parentElement.querySelector('.html-preview').classList.remove('hide');
+              this.parentElement.querySelector('.html-preview').classList.add('show');
+            }
+          } else {
+            if (this.classList.contains('show')) {
+              this.classList.remove('show');
+              this.classList.add('hide');
+            } else {
+              this.classList.remove('hide');
+              this.classList.add('show');
+            }
 
-  window.setTimeout(update, 150);
-}
+            this.parentElement.querySelector('.html-edit').classList.remove('hide');
+            this.parentElement.querySelector('.html-edit').classList.add('show');
+          }
+        }
 
-</script>
-</head>
+        function addFrameset() {
+            if (document.getElementsByTagName("htmlEditContainer").length) {
+                document.getElementsByTagName("htmlEditContainer").style.visibility = "hidden";
+            }          
 
-<frameset resizable="yes" rows="50%,*" onload="init();">
-  <!-- about:blank confuses opera, so use javascript: URLs instead -->
-  <frame name="editbox" src="javascript:&#39;&#39;;">
-  <frame name="dynamicframe" src="javascript:&#39;&#39;;">
-</frameset>
+            var framesetCurrentCount = document.getElementsByTagName("htmlEditContainer").length;           
+                       
+            var htmlEditContainer =  document.createElement('htmlEditContainer');            
 
+            var txtHtmlEditId = "txtHtmlEdit" + framesetCurrentCount + 1;
+            var textarea = document.createElement('textarea');
+            textarea.id = txtHtmlEditId;
+            textarea.className = "html-edit show";
+            textarea.ondblclick = showHide;
+            htmlEditContainer.appendChild(textarea);
+            
+            var frmHtmlPreviewId = "frmHtmlPreview" + framesetCurrentCount + 1;
+            var iframe = document.createElement('iframe');
+            iframe.id = frmHtmlPreviewId;
+            iframe.src = "\"javascript:&#39;&#39;;\"";
+            iframe.className = "html-preview hide";            
+            iframe.ondblclick = showHide;
+            htmlEditContainer.appendChild(iframe);
 
+            document.getElementsByTagName("framesetcontainer")[0].appendChild(htmlEditContainer);
+        }        
+    </script>
+  </head>
+
+  <body onload="init();">
+    <framesetcontainer>
+    </framesetcontainer>
+  </body>
 </html>
