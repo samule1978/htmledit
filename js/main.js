@@ -80,10 +80,25 @@ function addFrmOverlayLogic() {
 	document
 		.getElementById("frmOverlay")
 		.addEventListener("dblclick", function (e) {
-			document
-				.querySelector("framesetcontroller")
-				.classList.remove("hide");
-			document.querySelector("framesetcontroller").classList.add("show");
+			if (
+				document
+					.querySelector("framesetcontroller")
+					.classList.contains("hide")
+			) {
+				document
+					.querySelector("framesetcontroller")
+					.classList.remove("show");
+				document
+					.querySelector("framesetcontroller")
+					.classList.add("hide");
+			} else {
+				document
+					.querySelector("framesetcontroller")
+					.classList.remove("hide");
+				document
+					.querySelector("framesetcontroller")
+					.classList.add("show");
+			}
 		});
 }
 
