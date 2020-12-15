@@ -1,6 +1,6 @@
 function init() {
 	addFrameset();
-	addGestures(document);
+	//addGestures(document);
 }
 
 function addGestures(element) {
