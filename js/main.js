@@ -14,29 +14,29 @@ function addGestures(element) {
 	element.addEventListener("swiped-left", function (e) {
 		/*console.log(e.type);
 		console.log(e.target);
-		console.log(e.detail);
-		alert(e.type);*/
+		console.log(e.detail);*/
+		alert(e.type);
 	});
 
 	element.addEventListener("swiped-right", function (e) {
 		/*console.log(e.type);
 		console.log(e.target);
-		console.log(e.detail);
-		alert(e.type);*/
+		console.log(e.detail);*/
+		alert(e.type);
 	});
 
 	element.addEventListener("swiped-up", function (e) {
 		/*console.log(e.type);
 		console.log(e.target);
-		console.log(e.detail);
-		alert(e.type);*/
+		console.log(e.detail);*/
+		alert(e.type);
 	});
 
 	element.addEventListener("swiped-down", function (e) {
 		/*console.log(e.type);
 		console.log(e.target);
-		console.log(e.detail);
-		alert(e.type);*/
+		console.log(e.detail);*/
+		alert(e.type);
 	});
 }
 
