@@ -1,43 +1,42 @@
 function init() {
 	addFrameset();
-	addGestures();
+	addGestures(document);
 }
 
-function addGestures() {
-	document.addEventListener("swiped", function (e) {
-		console.log(e.type);
+function addGestures(element) {
+	element.addEventListener("swiped", function (e) {
+		/*console.log(e.type);
 		console.log(e.target);
 		console.log(e.detail);
-		console.log(e.dir);
-		alert(e.type);
+		console.log(e.dir);	*/
 	});
 
-	document.addEventListener("swiped-left", function (e) {
-		console.log(e.type);
+	element.addEventListener("swiped-left", function (e) {
+		/*console.log(e.type);
 		console.log(e.target);
 		console.log(e.detail);
-		alert(e.type);
+		alert(e.type);*/
 	});
 
-	document.addEventListener("swiped-right", function (e) {
-		console.log(e.type);
+	element.addEventListener("swiped-right", function (e) {
+		/*console.log(e.type);
 		console.log(e.target);
 		console.log(e.detail);
-		alert(e.type);
+		alert(e.type);*/
 	});
 
-	document.addEventListener("swiped-up", function (e) {
-		console.log(e.type);
+	element.addEventListener("swiped-up", function (e) {
+		/*console.log(e.type);
 		console.log(e.target);
 		console.log(e.detail);
-		alert(e.type);
+		alert(e.type);*/
 	});
 
-	document.addEventListener("swiped-down", function (e) {
-		console.log(e.type);
+	element.addEventListener("swiped-down", function (e) {
+		/*console.log(e.type);
 		console.log(e.target);
 		console.log(e.detail);
-		alert(e.type);
+		alert(e.type);*/
 	});
 }
 
