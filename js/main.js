@@ -87,17 +87,17 @@ function addFrmOverlayLogic() {
 			) {
 				document
 					.querySelector("framesetcontroller")
-					.classList.remove("show");
-				document
-					.querySelector("framesetcontroller")
-					.classList.add("hide");
-			} else {
-				document
-					.querySelector("framesetcontroller")
 					.classList.remove("hide");
 				document
 					.querySelector("framesetcontroller")
 					.classList.add("show");
+			} else {
+				document
+					.querySelector("framesetcontroller")
+					.classList.remove("show");
+				document
+					.querySelector("framesetcontroller")
+					.classList.add("hide");
 			}
 		});
 }
