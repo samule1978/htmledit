@@ -53,33 +53,40 @@
 		</style>
 
 		<script type="text/javascript">
-			var touchstartX = 0;
-			var touchstartY = 0;
-			var touchendX = 0;
-			var touchendY = 0;
+			function init() {
+				addFrameset();
+				addGestures();
+			}
 
-			var gestureZone = document.getElementsByTagName(
-				"framesetcontainer"
-			)[0];
+			function addGestures() {
+				var touchstartX = 0;
+				var touchstartY = 0;
+				var touchendX = 0;
+				var touchendY = 0;
 
-			gestureZone.addEventListener(
-				"touchstart",
-				function (event) {
-					touchstartX = event.changedTouches[0].screenX;
-					touchstartY = event.changedTouches[0].screenY;
-				},
-				false
-			);
+				var gestureZone = document.getElementsByTagName(
+					"framesetcontainer"
+				)[0];
 
-			gestureZone.addEventListener(
-				"touchend",
-				function (event) {
-					touchendX = event.changedTouches[0].screenX;
-					touchendY = event.changedTouches[0].screenY;
-					handleGesture();
-				},
-				false
-			);
+				gestureZone.addEventListener(
+					"touchstart",
+					function (event) {
+						touchstartX = event.changedTouches[0].screenX;
+						touchstartY = event.changedTouches[0].screenY;
+					},
+					false
+				);
+
+				gestureZone.addEventListener(
+					"touchend",
+					function (event) {
+						touchendX = event.changedTouches[0].screenX;
+						touchendY = event.changedTouches[0].screenY;
+						handleGesture();
+					},
+					false
+				);
+			}
 
 			function handleGesture() {
 				if (touchendX < touchstartX) {
@@ -101,10 +108,6 @@
 				if (touchendY === touchstartY) {
 					alert("Tap");
 				}
-			}
-
-			function init() {
-				addFrameset();
 			}
 
 			function showHide() {
