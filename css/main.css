@@ -87,10 +87,10 @@ iframe.active {
 	display: block;
 }
 
-@media screen and (orientation: landscape) {
+/*@media screen and (orientation: landscape) {
 	.html-preview-overlay,
 	framesetcontainer {
 		width: 100vh;
 		height: 100vh;
 	}
-}
+}*/
