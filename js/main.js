@@ -41,17 +41,24 @@ function addActions() {
 		});
 }
 
-function readTextFile(file) {
-	var rawFile = new XMLHttpRequest();
-	rawFile.open("GET", file, false);
-	rawFile.onreadystatechange = function () {
-		if (rawFile.readyState === 4) {
-			if (rawFile.status === 200 || rawFile.status == 0) {
-				var allText = rawFile.responseText;
+function includeHTML(file) {
+	var xhttp;
+	var fileContents;
+
+	if (file) {
+		xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function () {
+			if (this.readyState == 4) {
+				if (this.status == 200) {
+					fileContents = this.responseText;
+				}
 			}
-		}
-	};
-	rawFile.send(null);
+		};
+		xhttp.open("GET", file, true);
+		xhttp.send();
+
+		return fileContents;
+	}
 }
 
 function addControllerLogic() {
@@ -62,7 +69,7 @@ function addControllerLogic() {
 				if (this.value == "load") {
 					document.querySelector("iframe.active").src =
 						"data:text/html;charset=utf-8," +
-						escape(readTextFile("/files/firefox.xml"));
+						escape(includeHTML("/files/firefox.xml"));
 				} else {
 					document.querySelector("iframe.active").src = this.value;
 					document
