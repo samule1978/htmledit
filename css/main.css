@@ -89,7 +89,7 @@ iframe.active {
 
 @media screen and (orientation: landscape) {
 	body {
-		background-color: black;
+		background-color: yellow;
 	}
 	.html-preview-overlay,
 	framesetcontainer,
