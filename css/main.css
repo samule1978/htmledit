@@ -89,12 +89,12 @@ iframe.active {
 
 @media screen and (orientation: landscape) {
 	body {
-		background-color: teal;
+		background-color: black;
 	}
 	.html-preview-overlay,
 	framesetcontainer,
 	iframe {
-		width: 100vmin;
-		height: 100vmin;
+		width: 100vmax;
+		height: 100vmax;
 	}
 }
