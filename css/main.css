@@ -89,10 +89,10 @@ iframe.active {
 
 @media screen and (orientation: landscape) {
 	body {
-		background-color: green;
+		background-color: orange;
 	}
 	iframe {
-		width: 100vh;
+		width: unset;
 		height: 100vh;
 	}
 }
