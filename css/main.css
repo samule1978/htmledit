@@ -89,7 +89,8 @@ iframe.active {
 
 @media screen and (orientation: landscape) {
 	.html-preview-overlay,
-	framesetcontainer {
+	framesetcontainer,
+	iframe {
 		width: 100vh;
 		height: 100vh;
 	}
