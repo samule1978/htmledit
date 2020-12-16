@@ -2,44 +2,43 @@ function init() {
 	addFrmOverlayLogic();
 	addControllerLogic();
 	addFrameset();
+	addActions();
 	addGestures(document);
 }
 
 function addGestures(element) {
-	/*element.addEventListener("swiped", function (e) {
-		console.log(e.type);
-		console.log(e.target);
-		console.log(e.detail);
-		console.log(e.dir);
-	});*/
+	element.addEventListener("swiped", function (e) {});
 
 	element.addEventListener("swiped-left", function (e) {
-		console.log(e.type);
-		console.log(e.target);
-		console.log(e.detail);
-		alert(e.type);
+		var currentFrame = document.querySelector("iframe.active");
+		if (currentFrame && currentFrame.nextSibling) {
+			currentFrame.classList.remove("active");
+			currentFrame.nextSibling.classList.add("active");
+		}
 	});
 
 	element.addEventListener("swiped-right", function (e) {
-		console.log(e.type);
-		console.log(e.target);
-		console.log(e.detail);
-		alert(e.type);
+		var currentFrame = document.querySelector("iframe.active");
+		if (currentFrame && currentFrame.previousSibling) {
+			currentFrame.classList.remove("active");
+			currentFrame.previousSibling.classList.add("active");
+		}
 	});
 
-	/*element.addEventListener("swiped-up", function (e) {
-		console.log(e.type);
-		console.log(e.target);
-		console.log(e.detail);
-		alert(e.type);
-	});*/
+	element.addEventListener("swiped-up", function (e) {});
 
-	/*element.addEventListener("swiped-down", function (e) {
-		console.log(e.type);
-		console.log(e.target);
-		console.log(e.detail);
-		alert(e.type);
-	});*/
+	element.addEventListener("swiped-down", function (e) {});
+}
+
+function addActions() {
+	document.getElementById("btnAdd").addEventListener("click", function (e) {
+		addFrameset();
+	});
+	document
+		.getElementById("btnRemove")
+		.addEventListener("click", function (e) {
+			removeFrameset();
+		});
 }
 
 function addControllerLogic() {
@@ -104,7 +103,7 @@ function addFrmOverlayLogic() {
 
 function addFrameset() {
 	if (document.getElementsByTagName("iframe").length) {
-		document.getElementsByTagName("iframe").classList.remove("active");
+		document.querySelector("iframe.active").classList.remove("active");
 	}
 
 	var newIFrameIndex = document.getElementsByTagName("iframe").length + 1;
@@ -115,7 +114,22 @@ function addFrameset() {
 
 	var frmHtmlPreviewId = "frmHtmlPreview" + newIFrameIndex;
 	var iframe = document.createElement("iframe");
+	iframe.setAttribute("data-idx", newIFrameIndex);
 	iframe.id = frmHtmlPreviewId;
 	iframe.className = "html-preview active";
 	framesetcontainer.appendChild(iframe);
+}
+
+function removeFrameset() {
+	var frameToDelete = document.querySelector("iframe.active");
+	if (frameToDelete !== undefined) {
+		document.querySelector("iframe.active").remove();
+		if (document.getElementsByTagName("iframe").length) {
+			document
+				.getElementsByTagName("iframe")
+				[
+					document.getElementsByTagName("iframe").length - 1
+				].classList.add("active");
+		}
+	}
 }

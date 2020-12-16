@@ -18,8 +18,22 @@
 			class="html-preview-overlay hide"
 		></frmoverlay>
 		<framesetcontroller class="show">
-			<input id="txtUrl" type="text" class="url-src" />
-			<textarea id="txtHtml" class="html-src"></textarea>
+			<input
+				id="txtUrl"
+				type="text"
+				class="url-src"
+				placeholder="https://"
+			/>
+			<textarea
+				id="txtHtml"
+				class="html-src"
+				placeholder="<html></html>"
+			></textarea>
+			<input type="button" id="btnRemove" value="-" /><input
+				type="button"
+				id="btnAdd"
+				value="+"
+			/>
 		</framesetcontroller>
 		<framesetcontainer></framesetcontainer>
 	</body>

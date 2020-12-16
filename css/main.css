@@ -20,26 +20,42 @@ body {
 framesetcontroller {
 	width: 100vw;
 	height: 20vh;
-	position: relative;
+	position: absolute;
 	z-index: 1000;
 }
-framesetcontroller .url-src {
-	width: 100%;
-	height: 25%;
-	font-size: 20px;
-	border: 0;
-	margin: 0;
-	padding: 0;
-	background-color: rgb(234, 246, 253);
-}
+framesetcontroller .url-src,
 framesetcontroller .html-src {
 	width: 100%;
-	height: 75%;
 	font-size: 20px;
 	border: 0;
 	margin: 0;
 	padding: 0;
-	background-color: rgb(196, 206, 212);
+	background-color: white;
+	outline: solid 0.5px lightgrey;
+}
+framesetcontroller .url-src {
+	height: 25%;
+}
+framesetcontroller .html-src {
+	height: 75%;
+}
+
+framesetcontroller #btnAdd,
+framesetcontroller #btnRemove {
+	width: 50%;
+	border: 0;
+	margin: 0;
+	padding: 0;
+	height: 50px;
+	font-size: 25px;
+}
+framesetcontroller #btnAdd {
+	background-color: lightgreen;
+	color: black;
+}
+framesetcontroller #btnRemove {
+	background-color: rgb(253, 104, 104);
+	color: black;
 }
 
 framesetcontainer {
