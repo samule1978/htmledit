@@ -41,20 +41,41 @@ function addActions() {
 		});
 }
 
+function readTextFile(file) {
+	var rawFile = new XMLHttpRequest();
+	rawFile.open("GET", file, false);
+	rawFile.onreadystatechange = function () {
+		if (rawFile.readyState === 4) {
+			if (rawFile.status === 200 || rawFile.status == 0) {
+				var allText = rawFile.responseText;
+			}
+		}
+	};
+	rawFile.send(null);
+}
+
 function addControllerLogic() {
 	document
 		.getElementById("txtUrl")
 		.addEventListener("dblclick", function (e) {
 			if (this.value !== "") {
-				document.querySelector("iframe.active").src = this.value;
-				document.getElementById("frmOverlay").classList.remove("hide");
-				document
-					.querySelector("framesetcontroller")
-					.classList.remove("show");
-				document
-					.querySelector("framesetcontroller")
-					.classList.add("hide");
-				this.value = "";
+				if (this.value == "load") {
+					document.querySelector("iframe.active").src =
+						"data:text/html;charset=utf-8," +
+						escape(readTextFile("/files/firefox.xml"));
+				} else {
+					document.querySelector("iframe.active").src = this.value;
+					document
+						.getElementById("frmOverlay")
+						.classList.remove("hide");
+					document
+						.querySelector("framesetcontroller")
+						.classList.remove("show");
+					document
+						.querySelector("framesetcontroller")
+						.classList.add("hide");
+					this.value = "";
+				}
 			}
 		});
 	document
