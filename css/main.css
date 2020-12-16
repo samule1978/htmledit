@@ -89,10 +89,8 @@ iframe.active {
 
 @media screen and (orientation: landscape) {
 	body {
-		background-color: blue;
+		background-color: green;
 	}
-	.html-preview-overlay,
-	framesetcontainer,
 	iframe {
 		width: 100vh;
 		height: 100vh;
